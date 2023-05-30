@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Anna-Morawska-s-workspace-beaene.eu-west-1.xata.sh/db/remix-blog",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
