@@ -1,3 +1,4 @@
+import type { V2_MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -6,10 +7,21 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
 import styles from "./styles/app.css";
 
 export const links = () => {
   return [{ rel: "stylesheet", href: styles }];
+};
+
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: "Disney characters" },
+    {
+      name: "description",
+      content: "Very cool app",
+    },
+  ];
 };
 
 export default function App() {
