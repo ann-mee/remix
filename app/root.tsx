@@ -16,7 +16,7 @@ export const links = () => {
 
 export const meta: V2_MetaFunction = () => {
   return [
-    { title: "Disney characters" },
+    { title: "Ghibli Studio films" },
     {
       name: "description",
       content: "Very cool app",
