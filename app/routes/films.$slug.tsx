@@ -2,6 +2,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { GetFilmByTitle } from "~/api/films";
 import type { Film } from "~/api/films";
+import ArrowLeft from "~/assets/icons/ArrowLeft";
 import CharacterList from "~/components/CharacterList";
 import FilmData from "~/components/FilmData";
 
@@ -13,11 +14,14 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function SingleFilm() {
   const film = useLoaderData<Film>();
-  console.log(film);
+
   return (
     <div>
       <div className="mb-10">
-        <Link to="/films">Go back</Link>
+        <Link to="/films" className="flex items-center">
+          <ArrowLeft />
+          <span className="ml-2">Go back</span>
+        </Link>
       </div>
       <div className="grid grid-cols-10 gap-4">
         <div className="col-span-3">
