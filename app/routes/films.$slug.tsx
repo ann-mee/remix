@@ -23,7 +23,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     slug: params.slug,
   };
 
-  await addComment(comment);
+  await addComment(request, comment);
   return redirect(`/films/${params.slug}`);
 };
 

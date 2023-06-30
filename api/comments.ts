@@ -1,3 +1,5 @@
+import { getXataClient } from "utils/xata";
+
 export type Comment = {
   name: string;
   message: string;
@@ -7,29 +9,22 @@ export type Comment = {
 export async function getComments(slug: string | undefined) {
   if (!slug) return;
 
-  const apiUrl =
-    process.env.NODE_ENV === "production"
-      ? process.env.REACT_APP_API_URL_PROD
-      : process.env.REACT_APP_API_URL_LOCAL;
+  const xata = getXataClient();
 
-  const response = await fetch(`${apiUrl}/comments?slug=${slug}`);
+  const response = await xata.db.comments.filter({ slug: slug }).getMany();
 
-  return response.json();
+  return response;
 }
 
-export async function addComment(comment: Comment) {
-  const apiUrl =
-    process.env.NODE_ENV === "production"
-      ? process.env.REACT_APP_API_URL_PROD
-      : process.env.REACT_APP_API_URL_LOCAL;
+export async function addComment(request: any, comment: Comment) {
+  // const xata = getXataClient();
 
-  const response = await fetch(`${apiUrl}/comments`, {
-    method: "POST",
-    body: JSON.stringify(comment),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  // const record = await xata.db.comments.create({
+  //   name: comment.name,
+  //   message: comment.message,
+  //   slug: comment.slug,
+  // });
 
-  return response.json();
+  // return record;
+  return true;
 }

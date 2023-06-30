@@ -66,7 +66,6 @@ export async function GetTopFilms(number: number = 3) {
     });
 
     const sortedFilms = updatedFilms.sort((a, b) => {
-      console.log(a);
       const aRotten = parseInt(a.reviews.rottenTomatoes.slice(0, -1));
       const bRotten = parseInt(b.reviews.rottenTomatoes.slice(0, -1));
       return bRotten - aRotten;
@@ -93,7 +92,7 @@ export async function GetFilmByTitle(slug: string | undefined) {
     const film: Film = await response.json();
 
     const comments = await getComments(slug);
-
+    console.log(comments);
     return { ...film, comments };
   } catch (error) {
     console.error(error);

@@ -8,10 +8,11 @@ import type {
 
 const tables = [
   {
-    name: "posts",
+    name: "comments",
     columns: [
-      { name: "title", type: "string" },
-      { name: "content", type: "text" },
+      { name: "name", type: "string" },
+      { name: "message", type: "string" },
+      { name: "slug", type: "string" },
     ],
   },
 ] as const;
@@ -19,11 +20,11 @@ const tables = [
 export type SchemaTables = typeof tables;
 export type InferredTypes = SchemaInference<SchemaTables>;
 
-export type Posts = InferredTypes["posts"];
-export type PostsRecord = Posts & XataRecord;
+export type Comments = InferredTypes["comments"];
+export type CommentsRecord = Comments & XataRecord;
 
 export type DatabaseSchema = {
-  posts: PostsRecord;
+  comments: CommentsRecord;
 };
 
 const DatabaseClient = buildClient();
