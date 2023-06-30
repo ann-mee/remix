@@ -12,7 +12,7 @@ export async function getComments(slug: string | undefined) {
   const xata = getXataClient();
 
   const response = await xata.db.comments.filter({ slug: slug }).getMany();
-  console.log(response);
+
   return response;
 }
 
