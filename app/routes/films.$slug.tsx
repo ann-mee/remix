@@ -3,7 +3,7 @@ import {
   type ActionFunction,
   type LoaderFunction,
 } from "@remix-run/node";
-import { Link, useActionData, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { addComment } from "~/api/comments";
 import { GetFilmByTitle } from "~/api/films";

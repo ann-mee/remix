@@ -6,14 +6,15 @@ export type Comment = {
 
 export async function getComments(slug: string | undefined) {
   if (!slug) return;
-
-  const response = await fetch(`http://localhost:3001/comments?slug=${slug}`);
+  const apiUrl = process.env.API_URL || "http://localhost:3001";
+  const response = await fetch(`${apiUrl}/comments?slug=${slug}`);
 
   return response.json();
 }
 
 export async function addComment(comment: Comment) {
-  const response = await fetch("http://localhost:3001/comments", {
+  const apiUrl = process.env.API_URL || "http://localhost:3001";
+  const response = await fetch(`${apiUrl}/comments`, {
     method: "POST",
     body: JSON.stringify(comment),
     headers: {
