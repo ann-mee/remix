@@ -1,6 +1,6 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { GetTopFilms } from "~/api/films";
+import { GetTopFilms } from "api/films";
 import TopFilms from "~/components/TopFilms";
 
 export const loader: LoaderFunction = async ({ request }) => {

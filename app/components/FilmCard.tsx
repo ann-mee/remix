@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import type { Film } from "~/api/films";
+import type { Film } from "api/films";
 
 export default function FilmCard({ film }: { film: Film }) {
   return (

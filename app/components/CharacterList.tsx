@@ -1,4 +1,4 @@
-import type { Character } from "~/api/films";
+import type { Character } from "api/films";
 
 export default function CharacterList({
   characters,

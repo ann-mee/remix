@@ -1,6 +1,6 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { GetFilms } from "~/api/films";
+import { GetFilms } from "api/films";
 import FilmCard from "~/components/FilmCard";
 import Search from "~/components/Search";
 
