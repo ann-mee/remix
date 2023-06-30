@@ -7,14 +7,16 @@ export type Comment = {
 export async function getComments(slug: string | undefined) {
   if (!slug) return;
   const apiUrl = process.env.API_URL || "http://localhost:3001";
-  const response = await fetch(`${apiUrl}/comments?slug=${slug}`);
+  const response = await fetch(
+    `https://remix-two-azure.vercel.app/comments?slug=${slug}`
+  );
 
   return response.json();
 }
 
 export async function addComment(comment: Comment) {
   const apiUrl = process.env.API_URL || "http://localhost:3001";
-  const response = await fetch(`${apiUrl}/comments`, {
+  const response = await fetch(`https://remix-two-azure.vercel.app/comments`, {
     method: "POST",
     body: JSON.stringify(comment),
     headers: {
