@@ -57,7 +57,7 @@ export default function SingleFilm() {
 
           <CharacterList characters={film.character} />
 
-          <Comments comments={film.comments} />
+          {/* <Comments comments={film.comments} /> */}
         </div>
       </div>
     </div>

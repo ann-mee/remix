@@ -91,8 +91,8 @@ export async function GetFilmByTitle(slug: string | undefined) {
     const response = await fetch(url);
     const film: Film = await response.json();
 
-    const comments = await getComments(slug);
-    console.log(comments);
+    const comments = {}; //await getComments(slug);
+    //console.log(comments);
     return { ...film, comments };
   } catch (error) {
     console.error(error);
