@@ -1,10 +1,31 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import {
+  redirect,
+  type ActionFunction,
+  type LoaderFunction,
+} from "@remix-run/node";
+import { Link, useActionData, useLoaderData } from "@remix-run/react";
+import invariant from "tiny-invariant";
+import { addComment } from "~/api/comments";
 import { GetFilmByTitle } from "~/api/films";
 import type { Film } from "~/api/films";
 import ArrowLeft from "~/assets/icons/ArrowLeft";
 import CharacterList from "~/components/CharacterList";
+import Comments from "~/components/Comments";
 import FilmData from "~/components/FilmData";
+
+export const action: ActionFunction = async ({ request, params }) => {
+  invariant(params.slug, "expected params.slug");
+  const body = await request.formData();
+
+  const comment = {
+    name: body.get("name") as string,
+    message: body.get("message") as string,
+    slug: params.slug,
+  };
+
+  await addComment(comment);
+  return redirect(`/films/${params.slug}`);
+};
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -35,6 +56,8 @@ export default function SingleFilm() {
           <FilmData film={film} />
 
           <CharacterList characters={film.character} />
+
+          <Comments comments={film.comments} />
         </div>
       </div>
     </div>

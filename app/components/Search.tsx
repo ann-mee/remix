@@ -1,4 +1,5 @@
 import { Form } from "@remix-run/react";
+import Button from "./Button";
 
 export default function Search() {
   return (
@@ -12,12 +13,7 @@ export default function Search() {
           className="border border-teal-700 rounded-md py-2 px-3"
         />
       </label>{" "}
-      <button
-        type="submit"
-        className="bg-teal-700 hover:bg-teal-800 text-white px-3 py-2 rounded-md transition duration-150"
-      >
-        Search
-      </button>
+      <Button label="Search" />
     </Form>
   );
 }

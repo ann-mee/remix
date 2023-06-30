@@ -1,3 +1,6 @@
+import { getComments } from "./comments";
+import type { Comment } from "./comments";
+
 export type Character = {
   name: string;
 };
@@ -18,6 +21,7 @@ export type Film = {
   runtimeMinutes: string;
   reviews: Reviews;
   slug: string;
+  comments: Comment[];
 };
 
 export async function GetFilms(title: string | null) {
@@ -86,8 +90,11 @@ export async function GetFilmByTitle(slug: string | undefined) {
 
   try {
     const response = await fetch(url);
-    const data: Film = await response.json();
-    return data;
+    const film: Film = await response.json();
+
+    const comments = await getComments(slug);
+
+    return { ...film, comments };
   } catch (error) {
     console.error(error);
     return { error: "Failed to fetch data from the API." };

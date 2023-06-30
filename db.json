@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "name": "John",
+      "message": "sample message",
+      "slug": "arrietty"
+    },
+    {
+      "id": 2,
+      "name": "Joe",
+      "message": "sample message",
+      "slug": "arrietty"
+    },
+    {
+      "id": 3,
+      "name": "Joel",
+      "message": "sample message",
+      "slug": "grave-of-the-fireflies"
+    },
+    {
+      "name": "test",
+      "message": "test",
+      "slug": "grave-of-the-fireflies",
+      "id": 4
+    }
+  ]
+}
