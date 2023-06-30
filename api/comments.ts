@@ -16,15 +16,14 @@ export async function getComments(slug: string | undefined) {
   return response;
 }
 
-export async function addComment(request: any, comment: Comment) {
-  // const xata = getXataClient();
+export async function addComment(comment: Comment) {
+  const xata = getXataClient();
 
-  // const record = await xata.db.comments.create({
-  //   name: comment.name,
-  //   message: comment.message,
-  //   slug: comment.slug,
-  // });
+  const record = await xata.db.comments.create({
+    name: comment.name,
+    message: comment.message,
+    slug: comment.slug,
+  });
 
-  // return record;
-  return true;
+  return record;
 }
