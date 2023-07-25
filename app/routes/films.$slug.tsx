@@ -3,11 +3,11 @@ import {
   type ActionFunction,
   type LoaderFunction,
 } from "@remix-run/node";
-import { Link, useActionData, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import { addComment } from "~/api/comments";
-import { GetFilmByTitle } from "~/api/films";
-import type { Film } from "~/api/films";
+import { addComment } from "api/comments";
+import { GetFilmByTitle } from "api/films";
+import type { Film } from "api/films";
 import ArrowLeft from "~/assets/icons/ArrowLeft";
 import CharacterList from "~/components/CharacterList";
 import Comments from "~/components/Comments";

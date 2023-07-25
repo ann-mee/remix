@@ -1,5 +1,5 @@
 import { useLocation, useNavigation } from "@remix-run/react";
-import type { Comment } from "~/api/comments";
+import type { Comment } from "api/comments";
 import Button from "./Button";
 import InputField from "./form/InputField";
 

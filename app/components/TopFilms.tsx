@@ -1,4 +1,4 @@
-import type { Film } from "~/api/films";
+import type { Film } from "api/films";
 import FilmCard from "./FilmCard";
 
 export default function TopFilms({ films }: { films: Film[] }) {

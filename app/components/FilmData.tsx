@@ -1,4 +1,4 @@
-import type { Film } from "~/api/films";
+import type { Film } from "api/films";
 
 export default function FilmData({ film }: { film: Film }) {
   return (

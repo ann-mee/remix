@@ -66,7 +66,6 @@ export async function GetTopFilms(number: number = 3) {
     });
 
     const sortedFilms = updatedFilms.sort((a, b) => {
-      console.log(a);
       const aRotten = parseInt(a.reviews.rottenTomatoes.slice(0, -1));
       const bRotten = parseInt(b.reviews.rottenTomatoes.slice(0, -1));
       return bRotten - aRotten;
