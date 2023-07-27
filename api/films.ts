@@ -7,7 +7,6 @@ export type Character = {
 
 type Reviews = {
   rottenTomatoes: string;
-  imdb: string;
 };
 
 export type Film = {

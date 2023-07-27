@@ -9,7 +9,9 @@ export default function CharacterList({
     <div>
       <h2 className="text-2xl mb-6">Characters</h2>
       {characters.map((character, index) => (
-        <p key={index}>{character.name}</p>
+        <p key={index} role="listitem">
+          {character.name}
+        </p>
       ))}
     </div>
   );
