@@ -11,8 +11,11 @@ export default function InputField({ label, name, type = "text" }: InputProps) {
 
   return (
     <>
-      <label className="my-2">{label}</label>
+      <label className="my-2" htmlFor={name}>
+        {label}
+      </label>
       <input
+        id={name}
         name={name}
         type={type}
         className={`rounded border py-2 px-3 inline-block w-full ${
