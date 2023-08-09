@@ -6,6 +6,10 @@ export type Comment = {
   slug: string;
 };
 
+export type Comments = {
+  comments: Comment[];
+};
+
 export async function getComments(slug: string | undefined) {
   if (!slug) return;
 

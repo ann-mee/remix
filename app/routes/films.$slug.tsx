@@ -10,8 +10,8 @@ import { GetFilmByTitle } from "api/films";
 import type { Film } from "api/films";
 import ArrowLeft from "~/assets/icons/ArrowLeft";
 import CharacterList from "~/components/CharacterList";
-import Comments from "~/components/Comments";
 import FilmData from "~/components/FilmData";
+import CommentsBlock from "~/components/CommentsBlock";
 
 export const action: ActionFunction = async ({ request, params }) => {
   invariant(params.slug, "expected params.slug");
@@ -57,7 +57,7 @@ export default function SingleFilm() {
 
           <CharacterList characters={film.character} />
 
-          <Comments comments={film.comments} />
+          <CommentsBlock comments={film.comments} />
         </div>
       </div>
     </div>
