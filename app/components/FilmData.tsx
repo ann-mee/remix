@@ -5,12 +5,8 @@ export default function FilmData({ film }: { film: Film }) {
     <table className="my-6">
       <tbody>
         <tr>
-          <td className="w-32">Genre</td>
-          <td>{film.genre}</td>
-        </tr>
-        <tr>
           <td>Release</td>
-          <td>{film.release}</td>
+          <td>{film.release_date}</td>
         </tr>
         <tr>
           <td>Director</td>
@@ -18,7 +14,7 @@ export default function FilmData({ film }: { film: Film }) {
         </tr>
         <tr>
           <td>Runtime</td>
-          <td>{film.runtimeMinutes}m</td>
+          <td>{film.running_time}m</td>
         </tr>
       </tbody>
     </table>

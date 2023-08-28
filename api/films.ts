@@ -5,41 +5,27 @@ export type Character = {
   name: string;
 };
 
-type Reviews = {
-  rottenTomatoes: string;
-};
-
 export type Film = {
+  id: string;
   title: string;
-  poster: string;
+  movie_banner: string;
   synopsis: string;
   character: Character[];
-  genre: string;
-  release: string;
+  release_date: string;
   director: string;
-  runtimeMinutes: string;
-  reviews: Reviews;
-  slug: string;
+  running_time: string;
+  rt_score: string;
   comments: Comment[];
 };
 
 export async function GetFilms(title: string | null) {
-  let url = new URL("https://studio-ghibli-films-api.herokuapp.com/api/");
+  let url = new URL("https://ghibliapi.vercel.app/films/");
 
   try {
     const response = await fetch(url);
-    const data: Film[] = await response.json();
-    const films = Object.values(data);
+    const films: Film[] = await response.json();
 
-    const updatedFilms = films.map((film) => {
-      const slug = film.title.toLowerCase().replace(/\s+/g, "-");
-      return {
-        ...film,
-        slug,
-      };
-    });
-
-    return updatedFilms.filter((film) =>
+    return films.filter((film) =>
       title ? film.title.toLowerCase().includes(title.toLowerCase()) : true
     );
   } catch (error) {
@@ -49,24 +35,15 @@ export async function GetFilms(title: string | null) {
 }
 
 export async function GetTopFilms(number: number = 3) {
-  let url = new URL("https://studio-ghibli-films-api.herokuapp.com/api/");
+  let url = new URL("https://ghibliapi.vercel.app/films/");
 
   try {
     const response = await fetch(url);
-    const data: Film[] = await response.json();
-    const films = Object.values(data);
+    const films: Film[] = await response.json();
 
-    const updatedFilms = films.map((film) => {
-      const slug = film.title.toLowerCase().replace(/\s+/g, "-");
-      return {
-        ...film,
-        slug,
-      };
-    });
-
-    const sortedFilms = updatedFilms.sort((a, b) => {
-      const aRotten = parseInt(a.reviews.rottenTomatoes.slice(0, -1));
-      const bRotten = parseInt(b.reviews.rottenTomatoes.slice(0, -1));
+    const sortedFilms = films.sort((a, b) => {
+      const aRotten = parseInt(a.rt_score.slice(0, -1));
+      const bRotten = parseInt(b.rt_score.slice(0, -1));
       return bRotten - aRotten;
     });
 
@@ -77,20 +54,18 @@ export async function GetTopFilms(number: number = 3) {
   }
 }
 
-export async function GetFilmByTitle(slug: string | undefined) {
-  if (!slug) return;
-  const title = slug
-    .replace(/-/g, " ")
-    .replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
-  let url = new URL(
-    `https://studio-ghibli-films-api.herokuapp.com/api/${title}`
-  );
+export async function GetFilmById(id: string | undefined) {
+  if (!id) return;
+
+  let url = new URL(`https://ghibliapi.vercel.app/films/${id}`);
 
   try {
     const response = await fetch(url);
     const film: Film = await response.json();
 
-    const comments = await getComments(slug);
+    console.log(film);
+
+    const comments = await getComments(id);
 
     return { ...film, comments };
   } catch (error) {

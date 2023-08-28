@@ -6,7 +6,7 @@ import {
 import { Link, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { addComment } from "api/comments";
-import { GetFilmByTitle } from "api/films";
+import { GetFilmById } from "api/films";
 import type { Film } from "api/films";
 import ArrowLeft from "~/assets/icons/ArrowLeft";
 import CharacterList from "~/components/CharacterList";
@@ -14,23 +14,23 @@ import FilmData from "~/components/FilmData";
 import CommentsBlock from "~/components/CommentsBlock";
 
 export const action: ActionFunction = async ({ request, params }) => {
-  invariant(params.slug, "expected params.slug");
+  invariant(params.id, "expected params.id");
   const body = await request.formData();
 
   const comment = {
     name: body.get("name") as string,
     message: body.get("message") as string,
-    slug: params.slug,
+    id: params.id,
   };
 
   await addComment(comment);
-  return redirect(`/films/${params.slug}`);
+  return redirect(`/films/${params.id}`);
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
-  const slug = url.pathname.split("/").pop();
-  return GetFilmByTitle(slug);
+  const id = url.pathname.split("/").pop();
+  return GetFilmById(id);
 };
 
 export default function SingleFilm() {
@@ -46,7 +46,11 @@ export default function SingleFilm() {
       </div>
       <div className="grid grid-cols-10 gap-4">
         <div className="col-span-3">
-          <img src={film.poster} alt={film.title} className="w-full h-auto" />
+          <img
+            src={film.movie_banner}
+            alt={film.title}
+            className="w-full h-auto"
+          />
         </div>
         <div className="col-span-6 col-start-5">
           <h1 className="text-5xl font-bold mb-10">{film.title}</h1>
@@ -55,7 +59,7 @@ export default function SingleFilm() {
 
           <FilmData film={film} />
 
-          <CharacterList characters={film.character} />
+          {/* <CharacterList characters={film.people} /> */}
 
           <CommentsBlock comments={film.comments} />
         </div>

@@ -13,21 +13,18 @@ jest.mock("@remix-run/react", () => {
 
 describe("FilmCard component", () => {
   const filmData = {
-    slug: "film-slug",
-    poster: "/path/to/poster.jpg",
+    id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
+    movie_banner: "/path/to/poster.jpg",
     title: "Film Title",
-    reviews: {
-      rottenTomatoes: "95%",
-    },
+    rt_score: "95%",
     synopsis: "Film synopsis",
     character: [
       { name: "Character 1", role: "Role 1" },
       { name: "Character 2", role: "Role 2" },
     ],
-    genre: "Action",
-    release: "2023-07-01",
+    release_date: "2023-07-01",
+    running_time: "128",
     director: "John Doe",
-    runtimeMinutes: "120",
     comments: [],
   };
 
@@ -35,16 +32,14 @@ describe("FilmCard component", () => {
     render(<FilmCard film={filmData} />);
 
     const filmTitle = screen.getByText(filmData.title);
-    const rottenTomatoesRating = screen.getByText(
-      filmData.reviews.rottenTomatoes
-    );
+    const rottenTomatoesRating = screen.getByText(filmData.rt_score);
 
     expect(filmTitle).toBeInTheDocument();
     expect(rottenTomatoesRating).toBeInTheDocument();
 
     const linkElement = screen.getByRole("link");
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement.getAttribute("href")).toBe(`/films/${filmData.slug}`);
+    expect(linkElement.getAttribute("href")).toBe(`/films/${filmData.id}`);
   });
 
   test("renders film poster with correct alt text", () => {

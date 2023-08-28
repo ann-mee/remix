@@ -5,8 +5,8 @@ import CommentsList from "../app/components/CommentsList";
 describe("CommentsList", () => {
   test("renders comments passed as props", () => {
     const comments = [
-      { name: "User1", message: "To jest komentarz 1", slug: "slug-1" },
-      { name: "User2", message: "To jest komentarz 2", slug: "slug-2" },
+      { name: "User1", message: "To jest komentarz 1", id: "slug-1" },
+      { name: "User2", message: "To jest komentarz 2", id: "slug-2" },
     ];
 
     render(<CommentsList comments={comments} />);

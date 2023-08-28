@@ -3,19 +3,19 @@ import { getXataClient } from "utils/xata";
 export type Comment = {
   name: string;
   message: string;
-  slug: string;
+  id: string;
 };
 
 export type Comments = {
   comments: Comment[];
 };
 
-export async function getComments(slug: string | undefined) {
-  if (!slug) return;
+export async function getComments(id: string | undefined) {
+  if (!id) return;
 
   const xata = getXataClient();
 
-  const response = await xata.db.comments.filter({ slug: slug }).getMany();
+  const response = await xata.db.comments.filter({ filmId: id }).getMany();
 
   return response;
 }
@@ -26,7 +26,7 @@ export async function addComment(comment: Comment) {
   const record = await xata.db.comments.create({
     name: comment.name,
     message: comment.message,
-    slug: comment.slug,
+    filmId: comment.id,
   });
 
   return record;
