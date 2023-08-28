@@ -42,11 +42,11 @@ export async function GetTopFilms(number: number = 3) {
     const films: Film[] = await response.json();
 
     const sortedFilms = films.sort((a, b) => {
-      const aRotten = parseInt(a.rt_score.slice(0, -1));
-      const bRotten = parseInt(b.rt_score.slice(0, -1));
-      return bRotten - aRotten;
+      const aScore = parseInt(a.rt_score);
+      const bScore = parseInt(b.rt_score);
+      return bScore - aScore;
     });
-
+    console.log(sortedFilms);
     return sortedFilms.slice(0, number);
   } catch (error) {
     console.error(error);
